@@ -1,9 +1,9 @@
-
-
 from turtle import Screen
 import time
 from player import Player
 from car_manager import CarManager
+from car import Car
+from scoreboard import Scoreboard
 
 
 # creando la pantalla inicial
@@ -14,24 +14,25 @@ screen.bgcolor('white')
 screen.title("Turtle-crossing")
 screen.tracer(0)
 
-
 screen.listen()
 
 player = Player()
-car = CarManager(0)
-car.move()
+
+car_manager = CarManager()
+
+scoreboard = Scoreboard()
 
 screen.onkey(player.move, 'Up')
 
-play_is_on = True
+scoreboard.level = player.level
 
+play_is_on = True
 
 while play_is_on:
     time.sleep(0.1)
+    car_manager.move_cars()
+    scoreboard.scoreboard_update()
     screen.update()
-
-
-
 
 
 
